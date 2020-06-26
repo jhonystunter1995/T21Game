@@ -1,21 +1,69 @@
 body
-    background-color: #f5f6fa
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
+    background-color: #f5f6fa             //DAR COLOR AL FONDO
+    font-size: 14px;                       //CAMBIAR TAMAÑO DE LETRA
+    font-family: 'Roboto', sans-serif;     
 
 h2,h3,h4,h5,ul,body,html 
-    padding: 0px;
-    margin: 0px;
+    padding: 0px;                         //MARGEN INTERIOR
+    margin: 0px;                          //MARGEN EXTERIOR
 
 .wrapper
-    min-height: 100vh
-    overflow hidden
+    min-height: 100vh                     //ALTURA MINIMA
+    overflow hidden                       //SI EL CONTENIDO DESBORDA AL ELEMENTO--> auto|hidden|scroll|visible
     .col1
-        float left
-        position relative
-        z-index: 999;
-        width: 17%;
+        float left                        //modo de posicionamiento flotante-->	none | left | right
+        position relative                 //modo de posicionamiento-->	absolute | fixed | relative | static
+        z-index: 999;                     //apilamiento-->	auto | número-entero
+        width: 17%;                       //anchura	auto--> | distancia | porcentaje
     .col2
         float left
         width: 83%;
+
+.sidebar
+    background-color: #fffff
+    min-height: 100vh
+    .section-top
+        background-color: #f5f500
+        box-shadow: 0 0.1rem 1rem rgb(0,0,0 0.15 )      //bordes de la caja
+    .logo
+        display: block
+        margin: opx auto
+        padding-top: 24px;
+        width: 90%;
+    .user
+        color: #000000 !important
+        padding: 16px;
+        a 
+            color: #71258a
+            font-size: 1.5em;
+    .main
+        display: block
+        margin-top: 8px
+        ul
+            li
+            margin-bottom: 4px;
+            
+            a 
+                color: #8998AC !important
+                display: block
+                font-size: 1.2em;
+                padding: 12px 16px
+                i
+                    margin-right: 8px;
+                &:hover
+                    background-color: #f5f500
+                    box-shadow: 0 0.1rem 1rem rgb(0,0,0 0.15 )
+                    color: #000000 !important
+                    text-decoration: none
+
+
+
+
+
+
+
+
         
+
+
+
