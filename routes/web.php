@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//ACTIVAR LA RUTA DE VERIFICACION...//
 Auth::routes(['verify' => true]);
 
+//MIDDLEWARE DE VERIFICACION...///
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');

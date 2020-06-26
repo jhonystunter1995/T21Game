@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+//IMPLEMENTACION DEL MUSTVERIFYEMAIL......///
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
