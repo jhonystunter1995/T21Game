@@ -24,3 +24,6 @@ Auth::routes(['verify' => true]);
 
 //MIDDLEWARE DE VERIFICACION...///
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+// Router Auth
+Route::get('/logout', 'ConnectController@getLogout')->name('logout');
