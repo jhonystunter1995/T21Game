@@ -18,22 +18,40 @@
             <h2 class="title"><i class="fas fa-users"></i> Usuarios</h2>
         </div>
 
-        <div class="insider">
-            <table class="table">
+    <div class="insider">
+        <div class="row">
+            <div class="col-md-2 offset-md-10">
+                <div class="dropdown">
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;">
+                    <i class="fas fa-filter"></i> Filtrar
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{{ url('/admin/users/all') }}"><i class="fas fa-spell-check"></i> Todos</a>
+                        <a class="dropdown-item" href="{{ url('/admin/users/1') }}"><i class="far fa-check-square"></i> Verificados</a>
+                        <a class="dropdown-item" href="{{ url('/admin/users/100') }}"><i class="fas fa-users-slash"></i> Inhabilitados</a>
+                        <a class="dropdown-item" href="{{ url('/admin/users/0') }}"><i class="fas fa-handshake-slash"></i> No verificados</a>
+                    </div>
+                </div>
+            </div>
+            <table class="table mtop16">
                 <thead>
                     <tr>
                         <td>ID</td>
                         <td>Nombre</td>
                         <td>Email</td>
+                        <td>Estado</td>
+                        <td>Rol</td>
                         <td></td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($users as $user)
-                    <tr>
+                    <tr class="table1">
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ getUserStatusArrayKey($user->status) }}</td>
+                        <td>{{ getRoleUserArrayKey($user->role) }}</td>
                         <td>
                             <div class="opts">
                                 <a href="{{ url('/admin/user/' .$user->id.'/edit') }}" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-user-edit"></i></a>
@@ -42,6 +60,9 @@
                         </td>
                     </tr>
                     @endforeach
+                    <tr>
+                        <td colspan="6">{!! $users->render() !!}</td>
+                    </tr>
                 </tbody>
             </table>    
         </div>
