@@ -33,14 +33,19 @@
                                 <span class="title"><i class="fas fa-id-card"></i> Nombre:</span>
                                 <span class="text">{{ $users->name }}</span>
                                 <span class="title"><i class="fas fa-power-off"></i> Estado del Usuario:</span>
-                                <span class="text">{{ getUserStatusArrayKey($users->status) }}</span>
+                                <span class="text">{{ getUserStatusArray(null,$users->status) }}</span>
                                 <span class="title"><i class="fas fa-paper-plane"></i> Correo Electrónico:</span>
                                 <span class="text">{{ $users->email }}</span>
                                 <span class="title"><i class="fas fa-calendar-alt"></i> Fecha de Registro:</span>
                                 <span class="text">{{ $users->created_at }}</span>
                                 <span class="title"><i class="fas fa-user-tag"></i> Rol de Usuario:</span>
-                                <span class="text">{{ getRoleUserArrayKey($users->role) }}</span>
+                                <span class="text">{{ getRoleUserArray(null,$users->role) }}</span>
                             </div>
+                            @if($users->status == '100' )
+                            <a href="{{ url('/admin/user/'.$users->id.'/banned') }}" class="btn btn-success">habilitar Usuario</a>
+                            @else
+                            <a href="{{ url('/admin/user/'.$users->id.'/banned') }}" class="btn btn-danger">Inhabilitar Usuario</a>
+                            @endif
                         </div> 
                         
                     </div>

@@ -27,3 +27,4 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 // Router Auth
 Route::get('/logout', 'ConnectController@getLogout')->name('logout');
+Route::get('/banner', 'ConnectController@getBanner')->name('banner');

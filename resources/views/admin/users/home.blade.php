@@ -50,8 +50,8 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ getUserStatusArrayKey($user->status) }}</td>
-                        <td>{{ getRoleUserArrayKey($user->role) }}</td>
+                        <td>{{ getUserStatusArray(null,$user->status) }}</td>
+                        <td>{{ getRoleUserArray(null,$user->role) }}</td>
                         <td>
                             <div class="opts">
                                 <a href="{{ url('/admin/user/' .$user->id.'/edit') }}" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-user-edit"></i></a>

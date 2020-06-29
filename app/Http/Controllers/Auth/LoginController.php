@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -36,5 +37,26 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    // EVITAR QUE UN USUARIO INHABILITADO SE LOGUEE.
+    public function redirectPath()
+    {
+        if (Auth::user()->status == "100") {
+            return '/logout';
+        }
+
+        return '/';
+    }
+
+    //SOLICITUD DE USUARIO ACTIVO.
+    protected function credenctials(Request $request)
+    {
+        $credenctials = $request->only($this->username(), 'password');
+        
+        $credenctials['is_active'] = true;
+        
+        return $credenctials;
+        
     }
 }

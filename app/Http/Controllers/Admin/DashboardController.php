@@ -10,6 +10,7 @@ class DashboardController extends Controller
     //Controla la vista entre usuario y admin
     public function __construct(){
             $this->middleware('auth');
+            $this->middleware('user.status');
             $this->middleware('isadmin');
     }
     
