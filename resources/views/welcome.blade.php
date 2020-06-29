@@ -148,6 +148,9 @@ body{
 
                 <div class="links">
                     <a href="{{ url('/admin') }}"><i class="fas fa-chalkboard"></i> Dashboard</a>
+                    @auth
+                    <a href="{{ url('/logout') }}"><i class="fas fa-chalkboard"></i> Salir</a>
+                    @endauth
                 </div>
             </div>
         </div>
