@@ -42,9 +42,19 @@
                                 <span class="text">{{ getRoleUserArray(null,$users->role) }}</span>
                             </div>
                             @if($users->status == '100' )
-                            <a href="{{ url('/admin/user/'.$users->id.'/banned') }}" class="btn btn-success">habilitar Usuario</a>
+                            <form method="POST" action="{{ route('user_update', ['user' => $users]) }}">
+                                @method('PUT')
+                                @csrf
+                                <input type="number" value="1" hidden name="status">
+                                <button class="btn" type="submit">Habilitar</button>
+                            </form>
                             @else
-                            <a href="{{ url('/admin/user/'.$users->id.'/banned') }}" class="btn btn-danger">Inhabilitar Usuario</a>
+                            <form method="POST" action="{{ route('user_update', ['user' => $users]) }}">
+                                @method('PUT')
+                                @csrf
+                                <input type="number" value="100" hidden name="status">
+                                <button class="btn" type="submit">Inhabilitar</button>
+                            </form>
                             @endif
                         </div> 
                         
@@ -56,6 +66,24 @@
                 <div class="panel shadow">
                     <div class="header">
                         <h2 class="title"><i class="fas fa-user-edit"></i> Editar info.Usuario</h2>
+                        
+                        <form class="form" method="POST" action="{{ route('user_update', ['user' => $users]) }}">
+                            @method('PUT')
+                            @csrf
+                            <p class="title"><i class="fas fa-id-card"></i> Nombre: <br/>
+                                <input type="text" name="name">
+                            </p>
+                            <button class="btn1" type="submit"><i class="fas fa-save"></i> Guardar</button>
+                        </form>
+
+                        <form class="form" method="POST" action="{{ route('user_update', ['user' => $users]) }}">
+                            @method('PUT')
+                            @csrf
+                            <p class="title"><i class="fas fa-paper-plane"></i> Correo Electrónico: <br/>
+                                <input type="text" name="email">
+                            </p>
+                            <button class="btn1" type="submit"><i class="fas fa-save"></i> Guardar</button>
+                        </form>
                     </div>
             
                     <div class="insider">

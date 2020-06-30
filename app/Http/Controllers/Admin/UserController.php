@@ -10,14 +10,16 @@ use App\User;
 class UserController extends Controller
 {
     //Controla la vista entre usuario y admin
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('user.status');
         $this->middleware('isadmin');
     }
 
     // LOGICA DE BASE DE DATOS
-    public function getUsers($status){
+    public function getUsers($status)
+    {
         if($status == 'all'):
             $users = User::orderBy('id', 'Desc')->paginate(30);
         else:
@@ -27,25 +29,33 @@ class UserController extends Controller
         return view('admin.users.home', $data);
     }
 
-    public function getUserEdit($id){
+    public function getUserEdit($id)
+    {
         $users = User::findOrFail($id);
         $data = ['users' => $users];
         return view('admin.users.uedit', $data);
     }
 
-    public function getUserBanned($id){
-        $users = User::findOrFail($id);
-        if($users->status == "100"):
-            $users->status = '1';
-            $msg = "Usuario Habilitado";
-        else:
-            $users->status = "100";
-            $msg = "Usuario Inhabilitado";
-        endif;         
+    // public function getUserBanned($id)
+    // {
+    //     $users = User::findOrFail($id);
+    //     if($users->status == "100"):
+    //         $users->status = '1';
+    //         $msg = "Usuario Habilitado";
+    //     else:
+    //         $users->status = "100";
+    //         $msg = "Usuario Inhabilitado";
+    //     endif;         
 
-        if($users->save()):
-            return back()->with('message', $msg)->with('typealert', 'success');
-        endif;    
+    //     if($users->save()):
+    //         return back()->with('message', $msg)->with('typealert', 'success');
+    //     endif;    
 
+    // }
+
+    public function postUserUpdate(Request $request, User $user)
+    {
+        $user->update($request->all());
+            return redirect("/admin/user/$user->id/edit")->with('update', 'usuario actualizado.')->with('typealert', 'success');
     }
 }
